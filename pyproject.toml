@@ -1,0 +1,16 @@
+# https://godatadriven.com/blog/minimal-pyproject-toml-example/
+# https://peps.python.org/pep-0621/
+
+[project]
+name = "PACKAGE_NAME"
+requires-python = ">=3.8"
+readme = "README.md"
+version = "0.0.0"
+authors = [
+    { name = "Shyam Sudhakaran", email = "shyamsnair@protonmail.com" }
+]
+dependencies = [
+]
+[project.optional-dependencies]
+dev = [
+]

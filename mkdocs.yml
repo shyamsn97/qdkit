@@ -1,0 +1,59 @@
+# site_name: REPLACE_PACKAGE_NAME
+# copyright: Copyright (c) 2023-present REPLACE_FULL_NAME <REPLACE_EMAIL>
+
+
+# mkdocs.yml
+site_name: PACKAGE_NAME Docs
+
+theme:
+  name: material
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.tooltips
+    - navigation.footer
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    - tabs
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+plugins:
+  - mkdocs-jupyter
+  - search
+  - literate-nav
+  - mkdocstrings
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.magiclink
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.snippets:
+      check_paths: true
+  - admonition
+  - def_list
+  - toc:
+      permalink: "#"
