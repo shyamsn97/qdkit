@@ -1,10 +1,10 @@
 import random
 from dataclasses import dataclass  # noqa
-from typing import Iterable, List, Union
+from typing import Iterable, List, Union, Callable, Tuple
 
 from tqdm import trange
 
-from mapleetz.evaluate_fn import EvaluateFunction, EvaluateOutput
+from mapleetz.evaluate_fn import EvaluateOutput
 from mapleetz.individual import Individual
 from mapleetz.map import GridMap
 from mapleetz.mutation import Mutation
@@ -21,10 +21,11 @@ class MapElites:
         self,
         initial_pop: List[Individual],
         map: GridMap,
-        evaluate_fn: EvaluateFunction,
+        evaluate_fn: Callable[[Individual], EvaluateOutput],
         mutations: Union[Iterable[Mutation], Mutation],
         choose_one_mutation: bool = False,
     ):
+
         self.initial_pop = initial_pop
         self.map = map
         self.evaluate_fn = evaluate_fn

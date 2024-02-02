@@ -1,7 +1,13 @@
 from mapleetz.evaluate_fn import EvaluateFunction, EvaluateOutput, GymEvaluateFunction
 from mapleetz.individual import Individual, TorchModuleIndividual
-from mapleetz.map import Map, GridMap
-from mapleetz.mutation import Mutation, MutationSet, rossoverMutation, DiffMutation, GaussianNoiseMutation
+from mapleetz.map import GridMap, Map
+from mapleetz.mutation import (
+    CrossoverMutation,
+    DiffMutation,
+    GaussianNoiseMutation,
+    Mutation,
+    MutationSet,
+)
 
 __all__ = [
     "EvaluateFunction",

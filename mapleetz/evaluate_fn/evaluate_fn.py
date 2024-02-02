@@ -2,40 +2,45 @@ from __future__ import annotations
 
 import abc
 from abc import ABCMeta
-from dataclasses import dataclass, field
-from typing import Any, Dict, List, Tuple
+from typing import  List, Tuple, Any
 
 import numpy as np
 
 from mapleetz.individual import Individual
 
 
-@dataclass
 class EvaluateOutput:
-    fitness: float
-    bc: np.array
-    aux: List[Dict[str, Any]] = field(default_factory=lambda: [{}])
-
-    def __add__(self, other):
-        if isinstance(other, EvaluateOutput):
-            fitness = self.fitness + other.fitness
-            bc = self.bc + other.bc
-            aux = self.aux + other.aux
-            return EvaluateOutput(fitness=fitness, bc=bc, aux=aux)
-        else:
-            fitness = self.fitness + other
-            bc = self.bc + bc
-            return EvaluateOutput(fitness=fitness, bc=bc, aux=self.aux)
+    def __init__(
+        self,
+        states,
+        fitness: float,
+        bc: np.array,
+        **kwargs
+    ):
+        self.states = states
+        self.fitness = fitness
+        self.bc = bc
 
 
 class EvaluateFunction(metaclass=ABCMeta):
+
     @abc.abstractmethod
-    def behavior_space(self, *args, **kwargs) -> List[Tuple[int, ...]]:
+    def behavior_space(self) -> List[Tuple[int, ...]]:
         """
-        return behavior space
+        behavior space
 
         Returns:
-            List[Tuple[int, ...]]
+            List[Tuple[int, ...]]: _description_
+        """
+
+
+    @abc.abstractmethod
+    def bc(self, states: Any) -> Any:
+        """
+        Behavior characteristic function
+
+        Returns:
+            Any: a behavior characteristic
         """
 
     @abc.abstractmethod

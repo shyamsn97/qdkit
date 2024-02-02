@@ -6,6 +6,7 @@ from mapleetz.individual.individual import Individual
 
 
 class Map(metaclass=ABCMeta):
+
     @property
     @abc.abstractmethod
     def num_individuals(self) -> int:

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, List, Tuple
+from typing import Any, List, Tuple, Callable
 
 import gym
 import numpy as np
@@ -19,9 +19,6 @@ class GymEvaluateFunction(EvaluateFunction):
             tuple(self.env.observation_space.high),
         ]
 
-    def get_action(self, action_output) -> Any:
-        return action_output
-
     def bc(self, states: List[np.array]) -> np.array:
         # by default use last state as bc
         return states[-1]
@@ -34,8 +31,8 @@ class GymEvaluateFunction(EvaluateFunction):
         states = [state]
         while not done:
             inp = state
-            action = self.get_action(individual(inp))
-            next_state, reward, done, info = self.env.step(action)
+            action = individual.act(inp)
+            next_state, reward, done, _ = self.env.step(action)
             fitness += reward
             state = next_state
             states.append(state)

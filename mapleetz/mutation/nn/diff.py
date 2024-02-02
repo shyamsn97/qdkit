@@ -7,6 +7,7 @@ from mapleetz.individual import Individual
 from mapleetz.map import Map
 from mapleetz.mutation.mutation import Mutation
 
+
 class DiffMutation(Mutation):
     def __init__(self, sigma_1: float = 0.1, sigma_2: float = 0.25):
         # from https://rl-vs.github.io/rlvs2021/class-material/evolutionary/light-virtual_school_qd.pdf

@@ -3,11 +3,11 @@ from __future__ import annotations
 import random
 from dataclasses import dataclass  # noqa
 from typing import List, Optional, Tuple
-
 import numpy as np
 
 from mapleetz.individual import Individual
 from mapleetz.map.map import Map
+from mapleetz.evaluate_fn.evaluate_fn import EvaluateOutput
 from mapleetz.utils import compute_ranks, normalize_arr, sample_prob_index
 
 
@@ -130,18 +130,17 @@ class GridMap(Map):
     def add(
         self,
         individual: Individual,
-        behavior_characteristic: np.array,
-        fitness: float = -float("inf"),
+        eval_output: EvaluateOutput,
     ):
-        bins, _ = self.query_individual(individual, behavior_characteristic)
+        bins, _ = self.query_individual(individual, eval_output.bc)
         if self.niche_grid[bins] is None:
             self.niche_grid[bins] = Niche(self.niche_size, self.niche_replace_criteria)
-        self.niche_grid[bins].add(individual, fitness)
+        self.niche_grid[bins].add(individual, eval_output.fitness)
         self.fitness_grid[bins] = self.niche_grid[bins].max_fitness
         self.occupancy_grid[bins] = len(self.niche_grid[bins])
 
     def query_individual(
-        self, individual: Individual, behavior_characteristic: np.array
+        self, behavior_characteristic: np.array
     ) -> Tuple[Tuple[int, ...], Niche]:
         bins = [0] * behavior_characteristic.shape[0]
         for i in range(behavior_characteristic.shape[0]):
