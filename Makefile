@@ -47,17 +47,17 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint: ## check style with flake8
-	isort --profile black miniqd
-	black miniqd
-	flake8 miniqd
+	isort --profile black mapleetz
+	black mapleetz
+	flake8 mapleetz
 
 install: clean lint
 	python -m pip install . --upgrade
 
 doc:
 	rm -r docs/reference/
-	pdocs as_markdown miniqd -o docs/reference
-	rm docs/reference/miniqd/index.md
+	pdocs as_markdown mapleetz -o docs/reference
+	rm docs/reference/mapleetz/index.md
 	cp examples/*.ipynb docs/examples/
 	cp README.md docs/index.md
 
@@ -69,7 +69,7 @@ commit: install test doc
 	git commit -a
 
 test:
-	python -m pytest --cov=miniqd/ --cov-report html:tests/cov-report tests/
+	python -m pytest --cov=mapleetz/ --cov-report html:tests/cov-report tests/
 
 test-html: test
 	$(BROWSER) tests/cov-report/index.html
