@@ -2,12 +2,13 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass  # noqa
-from typing import List, Optional, Tuple
+from typing import Any, Callable, List, Optional, Tuple
+
 import numpy as np
 
+from mapleetz.evaluate_fn.evaluate_fn import EvaluateOutput
 from mapleetz.individual import Individual
 from mapleetz.map.map import Map
-from mapleetz.evaluate_fn.evaluate_fn import EvaluateOutput
 from mapleetz.utils import compute_ranks, normalize_arr, sample_prob_index
 
 
@@ -78,12 +79,14 @@ class GridMapQueryOutput:
 class GridMap(Map):
     def __init__(
         self,
+        behavior_characteristic_fn: Callable[[Individual, EvaluateOutput], Any],
         behavior_space: List[Tuple[int, ...]],
         n_bins: int,
         niche_size: int,
         niche_replace_criteria: str = "sorted",
         sampling_method: str = "sorted",
     ):
+        self.behavior_characteristic_fn = behavior_characteristic_fn
         self.behavior_space = behavior_space
         self.n_bins = n_bins
         self.bins = np.linspace(*self.behavior_space, n_bins + 1)[1:-1].T
@@ -99,6 +102,9 @@ class GridMap(Map):
 
     def max_fitness(self) -> float:
         return np.max(self.fitness_grid)
+
+    def bc(self, individual: Individual, eval_output: EvaluateOutput) -> Any:
+        return self.behavior_characteristic_fn(individual, eval_output)
 
     @property
     def num_individuals(self) -> int:
@@ -132,7 +138,8 @@ class GridMap(Map):
         individual: Individual,
         eval_output: EvaluateOutput,
     ):
-        bins, _ = self.query_individual(individual, eval_output.bc)
+        bc = self.bc(individual=individual, eval_output=eval_output)
+        bins, _ = self.query_individual(individual, bc)
         if self.niche_grid[bins] is None:
             self.niche_grid[bins] = Niche(self.niche_size, self.niche_replace_criteria)
         self.niche_grid[bins].add(individual, eval_output.fitness)
@@ -140,7 +147,7 @@ class GridMap(Map):
         self.occupancy_grid[bins] = len(self.niche_grid[bins])
 
     def query_individual(
-        self, behavior_characteristic: np.array
+        self, individual: Individual, behavior_characteristic: np.array
     ) -> Tuple[Tuple[int, ...], Niche]:
         bins = [0] * behavior_characteristic.shape[0]
         for i in range(behavior_characteristic.shape[0]):

@@ -20,7 +20,7 @@ class CrossoverMutation(Mutation):
         self.sample_segment = sample_segment
 
     def _get_segment_range(self, individual: Individual) -> Tuple[List[int], int]:
-        flattened_params = individual.params().flatten()
+        flattened_params = individual.params.flatten()
         num_parameters = flattened_params.shape[0]
         segment_num_params = int(num_parameters * self.parameter_proportion)
         segment_min_range = 0
@@ -35,7 +35,7 @@ class CrossoverMutation(Mutation):
         if self.sample_segment:
             return self._get_segment_range(individual)
 
-        flattened_params = individual.params().flatten()
+        flattened_params = individual.params.flatten()
         num_parameters = flattened_params.shape[0]
         segment_num_params = int(num_parameters * self.parameter_proportion)
         indices = list(range(num_parameters))
@@ -52,10 +52,10 @@ class CrossoverMutation(Mutation):
     ) -> Individual:
         with torch.no_grad():
             crossover_individual = map.sample(sampling_method=self.sampling_method)
-            params = individual.params()
+            params = individual.params
             flattened_params = params.flatten()
             crossover_individual_flattened_params = (
-                crossover_individual.params().flatten()
+                crossover_individual.params.flatten()
             )
 
             mutated_params = params
@@ -82,6 +82,6 @@ class CrossoverMutation(Mutation):
             mutated_params[segment_indices] += crossover_segment
 
             # reshape to original params
-            mutated_params = mutated_params.reshape(tuple(individual.params().shape))
+            mutated_params = mutated_params.reshape(tuple(individual.params.shape))
 
         return individual.create_from_params(mutated_params)

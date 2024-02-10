@@ -1,5 +1,5 @@
-from mapleetz.evaluate_fn import EvaluateFunction, EvaluateOutput, GymEvaluateFunction
-from mapleetz.individual import Individual, TorchModuleIndividual
+from mapleetz.evaluate_fn import EvaluateOutput
+from mapleetz.individual import Individual, TorchIndividual
 from mapleetz.map import GridMap, Map
 from mapleetz.mutation import (
     CrossoverMutation,
@@ -10,11 +10,9 @@ from mapleetz.mutation import (
 )
 
 __all__ = [
-    "EvaluateFunction",
     "EvaluateOutput",
-    "GymEvaluateFunction",
     "Individual",
-    "TorchModuleIndividual",
+    "TorchIndividual",
     "Map",
     "GridMap",
     "Mutation",

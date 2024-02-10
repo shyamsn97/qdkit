@@ -1,6 +1,6 @@
 import random
 from dataclasses import dataclass  # noqa
-from typing import Iterable, List, Union, Callable, Tuple
+from typing import Callable, Iterable, List, Union
 
 from tqdm import trange
 
@@ -25,7 +25,6 @@ class MapElites:
         mutations: Union[Iterable[Mutation], Mutation],
         choose_one_mutation: bool = False,
     ):
-
         self.initial_pop = initial_pop
         self.map = map
         self.evaluate_fn = evaluate_fn
@@ -53,8 +52,7 @@ class MapElites:
 
             self.map.add(
                 individual,
-                behavior_characteristic=eval_output.bc,
-                fitness=eval_output.fitness,
+                eval_output=eval_output,
             )
 
         for it in bar:
@@ -64,8 +62,7 @@ class MapElites:
             eval_output: EvaluateOutput = self.evaluate_fn(mutated_individual)
 
             self.map.add(
-                mutated_individual,
-                behavior_characteristic=eval_output.bc,
-                fitness=eval_output.fitness,
+                individual=mutated_individual,
+                eval_output=eval_output,
             )
             bar.set_description(f"Max Fitness: {self.map.max_fitness()}")

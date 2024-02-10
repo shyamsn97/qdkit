@@ -23,8 +23,8 @@ class DiffMutation(Mutation):
         with torch.no_grad():
             individual_2 = map.sample(sampling_method=self.sampling_method)
 
-            params = individual.params()
-            params_2 = individual_2.params()
+            params = individual.params
+            params_2 = individual_2.params
 
             noise = np.random.randn(*tuple(params.shape))
             noise_2 = np.random.randn(*tuple(params.shape))

@@ -20,7 +20,7 @@ class GaussianNoiseMutation(Mutation):
         it: Optional[int] = 0,
     ) -> Individual:
         with torch.no_grad():
-            params = individual.params()
+            params = individual.params
             noise = self.mu + np.random.randn(*tuple(params.shape)) * self.std
 
             if isinstance(params, torch.Tensor):

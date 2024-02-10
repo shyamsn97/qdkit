@@ -1,4 +1,3 @@
-from mapleetz.evaluate_fn.evaluate_fn import EvaluateFunction, EvaluateOutput
-from mapleetz.evaluate_fn.gym import GymEvaluateFunction
+from mapleetz.evaluate_fn.evaluate_fn import EvaluateOutput
 
-__all__ = ["EvaluateFunction", "EvaluateOutput", "GymEvaluateFunction"]
+__all__ = ["EvaluateOutput"]
