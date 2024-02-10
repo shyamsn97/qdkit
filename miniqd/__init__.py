@@ -1,13 +1,13 @@
-from mapleetz.evaluate_fn import EvaluateOutput
-from mapleetz.individual import Individual, TorchIndividual
-from mapleetz.map import GridMap, Map
-from mapleetz.mutation import (
+from miniqd.individual import Individual, TorchIndividual
+from miniqd.map import GridMap, Map
+from miniqd.mutation import (
     CrossoverMutation,
     DiffMutation,
     GaussianNoiseMutation,
     Mutation,
     MutationSet,
 )
+from miniqd.utils import EvaluateOutput
 
 __all__ = [
     "EvaluateOutput",

@@ -4,10 +4,10 @@ from typing import Callable, Iterable, List, Union
 
 from tqdm import trange
 
-from mapleetz.evaluate_fn import EvaluateOutput
-from mapleetz.individual import Individual
-from mapleetz.map import GridMap
-from mapleetz.mutation import Mutation
+from miniqd.individual import Individual
+from miniqd.map import GridMap
+from miniqd.mutation import Mutation
+from miniqd.utils import EvaluateOutput
 
 
 @dataclass
@@ -37,10 +37,11 @@ class MapElites:
 
     def mutate_individual(self, individual: Individual, it: int) -> Individual:
         mutations = self.mutations
+        mutated_individual = individual.clone()
         if self.choose_one_mutation:
             mutations = [random.choice(self.mutations)]
         for mutation in mutations:
-            individual = mutation(individual, self.map, it)
+            mutated_individual = mutation(mutated_individual, self.map, it)
         return individual
 
     def run(self, num_iterations: int):
@@ -58,7 +59,6 @@ class MapElites:
         for it in bar:
             individual = self.map.sample()
             mutated_individual = self.mutate_individual(individual, it)
-
             eval_output: EvaluateOutput = self.evaluate_fn(mutated_individual)
 
             self.map.add(

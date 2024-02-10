@@ -1,8 +1,8 @@
 import abc
 from abc import ABCMeta
 
-from mapleetz.evaluate_fn.evaluate_fn import EvaluateOutput
-from mapleetz.individual.individual import Individual
+from miniqd.individual.individual import Individual
+from miniqd.utils import EvaluateOutput
 
 
 class Map(metaclass=ABCMeta):

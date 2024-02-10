@@ -6,6 +6,9 @@ from typing import Any
 
 
 class Individual(metaclass=ABCMeta):
+    def clone(self) -> Individual:
+        return self.create_from_params(self.params)
+
     @property
     @abc.abstractmethod
     def params(self) -> Any:

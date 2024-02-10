@@ -6,7 +6,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from mapleetz.individual.individual import Individual
+from miniqd.individual.individual import Individual
 
 
 def flatten_params(params: List[nn.Parameter]):
@@ -32,7 +32,7 @@ class TorchIndividual(Individual, nn.Module):
 
     @property
     def params(self) -> torch.Tensor:
-        return flatten_params(list(self.parameters()))
+        return flatten_params(list(self.parameters())).clone()
 
     @classmethod
     def create_from_params(

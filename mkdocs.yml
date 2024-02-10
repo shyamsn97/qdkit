@@ -1,9 +1,9 @@
-# site_name: REPLACE_mapleetz
+# site_name: REPLACE_miniqd
 # copyright: Copyright (c) 2023-present REPLACE_FULL_NAME <REPLACE_EMAIL>
 
 
 # mkdocs.yml
-site_name: mapleetz Docs
+site_name: miniqd Docs
 
 theme:
   name: material

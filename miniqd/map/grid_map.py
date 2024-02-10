@@ -6,10 +6,9 @@ from typing import Any, Callable, List, Optional, Tuple
 
 import numpy as np
 
-from mapleetz.evaluate_fn.evaluate_fn import EvaluateOutput
-from mapleetz.individual import Individual
-from mapleetz.map.map import Map
-from mapleetz.utils import compute_ranks, normalize_arr, sample_prob_index
+from miniqd.individual import Individual
+from miniqd.map.map import Map
+from miniqd.utils import EvaluateOutput, compute_ranks, normalize_arr, sample_prob_index
 
 
 class Niche:

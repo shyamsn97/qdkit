@@ -4,8 +4,8 @@ from typing import List, Optional
 
 import numpy as np
 
-from mapleetz.individual.individual import Individual
-from mapleetz.map.map import Map
+from miniqd.individual.individual import Individual
+from miniqd.map.map import Map
 
 
 class Mutation(metaclass=ABCMeta):
@@ -66,7 +66,7 @@ class MutationSet(Mutation):
         map: Optional[Map] = None,
         it: Optional[int] = 0,
     ) -> Individual:
-        new_individual = individual.copy()
+        new_individual = individual.clone()
         for mutation, mutation_prob in zip(self.mutations, self.mutation_probs):
             if np.random.uniform() < mutation_prob:
                 new_individual = mutation(new_individual, map, it)

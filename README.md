@@ -1,1 +1,2 @@
-# Base Template
+# Map Elites made easy
+

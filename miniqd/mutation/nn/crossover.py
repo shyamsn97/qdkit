@@ -3,9 +3,9 @@ from typing import List, Optional, Tuple
 import numpy as np
 import torch
 
-from mapleetz.individual import Individual
-from mapleetz.map import Map
-from mapleetz.mutation.mutation import Mutation
+from miniqd.individual import Individual
+from miniqd.map import Map
+from miniqd.mutation.mutation import Mutation
 
 
 class CrossoverMutation(Mutation):
