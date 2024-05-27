@@ -1,6 +1,6 @@
 import numpy as np
 
-from miniqd.individual import Individual
+from qdkit.individual import Individual
 
 
 class EvaluateOutput:

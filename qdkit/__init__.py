@@ -1,13 +1,13 @@
-from miniqd.individual import Individual, TorchIndividual
-from miniqd.map import GridMap, Map
-from miniqd.mutation import (
+from qdkit.individual import Individual, TorchIndividual
+from qdkit.map import GridMap, Map
+from qdkit.mutation import (
     CrossoverMutation,
     DiffMutation,
     GaussianNoiseMutation,
     Mutation,
     MutationSet,
 )
-from miniqd.utils import EvaluateOutput
+from qdkit.utils import EvaluateOutput
 
 __all__ = [
     "EvaluateOutput",

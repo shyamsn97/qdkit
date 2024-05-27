@@ -1,8 +1,9 @@
 import abc
 from abc import ABCMeta
 
-from miniqd.individual.individual import Individual
-from miniqd.utils import EvaluateOutput
+from qdkit.individual.individual import Individual
+from qdkit.map.niche import GridMapQueryOutput
+from qdkit.utils import EvaluateOutput
 
 
 class Map(metaclass=ABCMeta):
@@ -28,4 +29,15 @@ class Map(metaclass=ABCMeta):
 
         Args:
             eval_output (EvaluateOutput): output from evaluate function
+        """
+
+    @abc.abstractmethod
+    def search(self, fitness_criteria: float) -> GridMapQueryOutput:
+        """Search for individuals that reach a fitness criteria
+
+        Args:
+            fitness_criteria (float): _description_
+
+        Returns:
+            GridMapQueryOutput: _description_
         """

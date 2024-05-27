@@ -4,10 +4,10 @@ from typing import Callable, Iterable, List, Union
 
 from tqdm import trange
 
-from miniqd.individual import Individual
-from miniqd.map import GridMap
-from miniqd.mutation import Mutation
-from miniqd.utils import EvaluateOutput
+from qdkit.individual import Individual
+from qdkit.map import GridMap
+from qdkit.mutation import Mutation
+from qdkit.utils import EvaluateOutput
 
 
 @dataclass

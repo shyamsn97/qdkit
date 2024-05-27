@@ -1,9 +1,9 @@
-# site_name: REPLACE_miniqd
+# site_name: REPLACE_qdkit
 # copyright: Copyright (c) 2023-present REPLACE_FULL_NAME <REPLACE_EMAIL>
 
 
 # mkdocs.yml
-site_name: miniqd Docs
+site_name: qdkit Docs
 
 theme:
   name: material

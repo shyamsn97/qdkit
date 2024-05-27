@@ -4,8 +4,8 @@ from typing import List, Optional
 
 import numpy as np
 
-from miniqd.individual.individual import Individual
-from miniqd.map.map import Map
+from qdkit.individual.individual import Individual
+from qdkit.map.map import Map
 
 
 class Mutation(metaclass=ABCMeta):

@@ -6,7 +6,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from miniqd.individual.individual import Individual
+from qdkit.individual.individual import Individual
 
 
 def flatten_params(params: List[nn.Parameter]):
